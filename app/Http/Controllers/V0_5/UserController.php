@@ -11,8 +11,7 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-    public function uploadImage(Request $request)
-    {
+    public function uploadImage(Request $request) {
         $request->validate([
             'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
@@ -29,10 +28,10 @@ class UserController extends Controller
              */
             $imagenOrig = Imagen::create([
                 'id_paciente' => $user->id,
-                'url' => 'images/' . $imageName,
+                'url' => url('images/' . $imageName),
             ]);
 
-            if (PhotoHelper::pythonProccess($imagenOrig->url)) {
+            if (PhotoHelper::pythonProccess($imagenOrig->url, $imagenOrig->id)) {
                 return response()->json($imagenOrig, 200);
             }
             return response()->json(['message' => 'Error processing image'], 500);

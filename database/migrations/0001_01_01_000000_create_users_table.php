@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->tinyInteger('role')->default(1); // 1 = usuario, 2 = soporte, 3 = admin, 4 = super admin, 5 = Bot
+            $table->tinyInteger('role')->default(1); // 1 = usuario, 2 = familiar, 3 = soporte, 4 = admin, 5 = super admin y Bot, 6 = father
             $table->rememberToken();
             $table->foreignId('current_team_id')->nullable();
             $table->string('profile_photo_path', 2048)->nullable();
