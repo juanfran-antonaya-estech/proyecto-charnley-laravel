@@ -70,4 +70,8 @@ class User extends Authenticatable
     public function role(){
         return $this->belongsTo(Role::class);
     }
+
+    public function chatrooms(){
+        return $this->hasMany(Sala::class, 'id_paciente', 'id');
+    }
 }
