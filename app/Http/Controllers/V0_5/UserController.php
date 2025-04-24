@@ -13,7 +13,7 @@ class UserController extends Controller
 {
     public function uploadImage(Request $request) {
         $request->validate([
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'image' => 'required|image|mimes:png|max:2048',
         ]);
 
         $user = Auth::user();
