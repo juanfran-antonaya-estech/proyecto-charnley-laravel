@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\V0_5;
 
 use App\Http\Controllers\Controller;
+use Auth;
 use Illuminate\Http\Request;
 
 class AuthController extends Controller
@@ -14,8 +15,8 @@ class AuthController extends Controller
             'password' => 'required'
         ]);
 
-        if (auth()->attempt($request->only('email', 'password'))) {
-            $user = auth()->user();
+        if (Auth::attempt($request->only('email', 'password'))) {
+            $user = Auth::user();
             $token = $user->createToken('auth_token')->plainTextToken;
 
             return response()->json([
@@ -28,7 +29,7 @@ class AuthController extends Controller
     }
 
     public function unlog(Request $request){
-        $user = auth()->user();
+        $user = Auth::user();
         if ($user) {
             $user->tokens()->delete();
             return response()->json(['message' => 'Logged out successfully']);
@@ -43,7 +44,7 @@ class AuthController extends Controller
             'new_password' => 'required|min:6|confirmed'
         ]);
 
-        $user = auth()->user();
+        $user = Auth::user();
         if ($user && password_verify($request->current_password, $user->password)) {
             $user->password = bcrypt($request->new_password);
             $user->save();
@@ -55,7 +56,7 @@ class AuthController extends Controller
     }
 
     public function getUserToken(Request $request){
-        $user = auth()->user();
+        $user = Auth::user();
         if ($user) {
             return response()->json(['token' => $user->createToken('auth_token')->plainTextToken]);
         }

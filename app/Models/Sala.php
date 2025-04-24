@@ -16,4 +16,12 @@ class Sala extends Model
     {
         return $this->belongsTo(User::class, 'id_paciente');
     }
+
+    public function mensajes() {
+        return $this->hasMany(Mensaje::class, 'id_sala');
+    }
+
+    public function usersSoporte(){
+        return $this->belongsToMany(User::class, 'sala_user', 'sala_id', 'user_id');
+    }
 }
