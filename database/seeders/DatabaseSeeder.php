@@ -13,11 +13,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-        ]);
+        $users = User::factory(10)->create();
+
+        $fatherUser = $users->random();
+        $fatherUser->update(['role' => 6]);
+
+        echo "Father user: " . $fatherUser->name . " (ID: " . $fatherUser->id . ", MAIL: " . $fatherUser->email . ")\n";
     }
 }

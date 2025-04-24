@@ -30,7 +30,6 @@ class User extends Authenticatable
         'email',
         'password',
         'id_role',
-        'start_medication'
     ];
 
     /**
@@ -73,5 +72,12 @@ class User extends Authenticatable
 
     public function chatrooms(){
         return $this->hasMany(Sala::class, 'id_paciente', 'id');
+    }
+
+    public function takingCareOf(){
+        return $this->belongsTo(User::class, 'taking_care_of', 'id');
+    }
+    public function takenCareOf(){
+        return $this->hasMany(User::class, 'taking_care_of', 'id');
     }
 }
