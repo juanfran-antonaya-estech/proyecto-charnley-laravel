@@ -5,6 +5,7 @@ namespace App\Http\Controllers\V0_5;
 use App\Http\Controllers\Controller;
 use App\Http\Helpers\PhotoHelper;
 use App\Models\Imagen;
+use App\Models\Mensaje;
 use App\Models\Sala;
 use Auth;
 use Illuminate\Http\Request;
@@ -100,5 +101,46 @@ class UserController extends Controller
             }
             return response()->json(['message' => 'Sala no encontrada'], 404);
         }
+    }
+
+    public function postImage(Request $request){
+        $user = Auth::user();
+
+        if ($user && $user->role == 1 || $user->role == 6){
+
+            $request->validate([
+                'id_sala' => 'required|integer',
+                'content' => 'required|string',
+            ]);
+
+            $message = Mensaje::create([
+                'id_sala' => $request->id_sala,
+                'id_sender' => $user->id,
+                'content' => $request->content,
+            ]);
+            return response()->json($message, 200);
+        }
+        return response()->json(['message' => 'No tienes permisos para este enlace'], 405);
+    }
+
+    public function setMessageStatus(Request $request){
+        $user = Auth::user();
+
+        if ($user && $user->role == 1 || $user->role == 6){
+
+            $request->validate([
+                'id_mensaje' => 'required|integer',
+                'status' => 'required|integer',
+            ]);
+
+            $message = Mensaje::find($request->id_mensaje);
+            if ($message){
+                $message->state = $request->status;
+                $message->save();
+                return response()->json($message, 200);
+            }
+            return response()->json(['message' => 'Mensaje no encontrado'], 404);
+        }
+        return response()->json(['message' => 'No tienes permisos para este enlace'], 405);
     }
 }
