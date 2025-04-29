@@ -36,7 +36,7 @@ Route::prefix('/V0_5')->group(function () {
 
             Route::prefix('/familiar')->group(function() {
                 Route::get('/chat', [FamiliarController::class, 'getChatsICanView']);
-                Route::get('c/hat/{id}', [FamiliarController::class, 'getChatRoomDetail']);
+                Route::get('/chat/{id}', [FamiliarController::class, 'getChatRoomDetail']);
                 Route::get('/photo', [FamiliarController::class, 'getImagesByMySon']);
                 Route::get('/photo/{id}', [FamiliarController::class, 'getImageDetail']);
             });
