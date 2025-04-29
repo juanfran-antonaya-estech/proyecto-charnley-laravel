@@ -1,3 +1,6 @@
 *
 !.gitignore
+
 !image2recognition2dot0/
+!image2recognition2dot0/**
+
