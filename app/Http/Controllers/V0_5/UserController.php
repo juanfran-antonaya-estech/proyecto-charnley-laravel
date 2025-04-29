@@ -9,18 +9,24 @@ use App\Models\Mensaje;
 use App\Models\Sala;
 use Auth;
 use Illuminate\Http\Request;
+use Spatie\LaravelImageOptimizer\Facades\ImageOptimizer;
 
 class UserController extends Controller
 {
     public function uploadImage(Request $request) {
+        echo "coso recibido";
         $request->validate([
             'image' => 'required|image|mimes:png|max:2048',
         ]);
 
         $user = Auth::user();
 
+        if (!$user) {
+            return response()->json(['message' => 'Usuario no autenticado'], 401);
+        }
+
         // Solo los users pueden crear la foto
-        if ($user && $user->role == 1 || $user->role == 6) {
+        if ($user->role == 1 || $user->role == 6) {
             $imageName = time() . '.' . $request->image->extension();
             $request->image->move(public_path('images'), $imageName);
 
@@ -31,6 +37,9 @@ class UserController extends Controller
                 'id_paciente' => $user->id,
                 'url' => url('images/' . $imageName),
             ]);
+
+            echo $imagenOrig->url;
+            ImageOptimizer::optimize(public_path('images/' . $imageName));
 
             if (PhotoHelper::pythonProccess($imagenOrig->url, $imagenOrig->id)) {
                 return response()->json($imagenOrig, 200);

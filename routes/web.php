@@ -17,3 +17,10 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 });
+
+// Swagger UI route
+Route::middleware(['auth:sanctum'])->group(function () {
+    Route::get('/swagger-ui', function () {
+        echo("Swagger UI");
+    });
+});

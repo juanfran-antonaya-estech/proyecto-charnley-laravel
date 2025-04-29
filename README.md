@@ -64,3 +64,23 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+## Credenciales Importantes
+
+### Usuario Padre
+- **Correo Electrónico**: fathericus@example.com
+- **Rol**: 6 (Padre)
+
+### Usuario Bot
+- **Correo Electrónico**: botino@example.com
+- **Rol**: 5 (Bot)
+
+Estas credenciales se generan durante el seeder de la base de datos y pueden ser utilizadas con fines de prueba.
+
+## Documentación Swagger
+
+Para visualizar la documentación Swagger de la API:
+
+1. **Acceso directo**:
+   - He configurado una instancia de Swagger UI para que puedas acceder directamente a la documentación.
+   - [Haz clic aquí para ver la documentación Swagger](http://127.0.0.1:8000/docs/api).
