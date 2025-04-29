@@ -1,10 +1,7 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+@source "../views";
 @plugin "daisyui";
 
 [x-cloak] {
     display: none;
 }
-
-
