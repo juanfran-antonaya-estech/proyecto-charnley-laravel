@@ -26,7 +26,7 @@ class BotController extends Controller
             $imagenMod = Imagen::create([
                 'id_paciente' => Imagen::find($request->id)->id_paciente,
                 'url' => url('images/' . $imageName),
-                'id_imagen_original' => $request->original_id,
+                'id_imagen_original' => $request->id,
             ]);
 
             return response()->json(['message' => 'La imagen se ha subido'], 200);

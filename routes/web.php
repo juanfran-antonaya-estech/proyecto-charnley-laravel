@@ -25,3 +25,10 @@ Route::middleware([
         return view('bugs');
     })->name('bugs');
 });
+
+// Swagger UI route
+Route::middleware(['auth:sanctum'])->group(function () {
+    Route::get('/swagger-ui', function () {
+        echo("Swagger UI");
+    });
+});

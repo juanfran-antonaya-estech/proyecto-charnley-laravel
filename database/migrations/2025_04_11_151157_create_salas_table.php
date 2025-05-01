@@ -30,7 +30,7 @@ return new class extends Migration
            $table->foreignId('id_sala')->constrained('salas');
            $table->foreignId('id_sender')->constrained('users');
            $table->string('content');
-           $table->tinyInteger('state')->default(0);
+           $table->tinyInteger('state')->default(0); // 0 = no ha llegado, 1 = Entregado, 2 = leído
            $table->timestamps();
         });
     }

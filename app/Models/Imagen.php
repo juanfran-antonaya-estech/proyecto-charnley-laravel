@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Imagen extends Model
 {
     protected $table = 'imagenes';
+    protected $fillable = ['id_paciente', 'url'];
 
     public function paciente(): BelongsTo
     {
