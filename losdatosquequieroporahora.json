@@ -1,0 +1,141 @@
+//------------------------------
+    //listado de imagenes - (nota: si fuese posible tener una opción para sacar solo las imágenes de un usuario concreto, molaría)
+    {
+        "pagina" : 0,
+        "anterior" : null,
+        "siguiente" : 1,
+        "imagenes" : [{
+            "id_imagen" : 1,
+            "id_emisor" : 1,
+            "url" : "www.sitiodelaimagen.com/ladirecciondondeporrasseencuentrelaimagenparapoderinsrtarla.jpg",
+            "problema" : "veo un tipo en la esquina derecha haciendo twerking"
+        }]
+    },
+
+    //imagen
+    {
+        "id_imagen" : 1,
+        "id_emisor" : 1,
+        "url" : "www.sitiodelaimagen.com/ladirecciondondeporrasseencuentrelaimagenparapoderinsrtarla.jpg",
+        "problema" : "veo un tipo en la esquina derecha haciendo twerking"
+    }
+//------------------------------------
+
+//------------------------------------
+    //listado de chats (con usuarios)
+    {
+        "pagina" : 0,
+        "anterior" : null,
+        "siguiente" : 1,
+        "chats" : [{
+            "id_chat" : 1,
+            "id_emisor" : 1,
+            "fecha_ultimo_mensaje" : "13:30 01-01-2026",
+            "ultimo_mensaje" : "veo un tipo en la esquina derecha haciendo twerking"
+        }]
+    },
+
+    // chat (con usuarios)
+    {
+        "id_chat" : 1,
+        "id_emisor" : 1,
+        "chat" : {
+            "pagina" : 0,
+            "anterior" : null,
+            "siguiente" : 1,
+            "mensajes" : [{
+                "id_mensaje" : 1,
+                "id_emisor" : 1,
+                "fecha_envio" : "13:30 01-01-2026",
+                "contenido" : "veo un tipo en la esquina derecha haciendo twerking"
+            }]
+        }
+    }
+//------------------------------------
+    //listado de usuarios
+    {
+        "pagina" : 0,
+        "anterior" : null,
+        "siguiente" : 1,
+        "usuarios" : [{
+            "id_usuario" : 1,
+            "url_foto" : "www.sitiodelaimagen.com/ladirecciondondeporrasseencuentrelaimagenparapoderinsrtarla.jpg"
+        }]
+    },
+
+    //usuario
+    {
+        "id_usuario" : 1,
+        "url_foto" : "www.sitiodelaimagen.com/ladirecciondondeporrasseencuentrelaimagenparapoderinsrtarla.jpg",
+        "edad" : 41,
+        "sexo" : "otro",
+        "fecha_registro" : "13:30 01-01-2026", //cogería la fecha en que el admin lo registró
+        "strikes" : 3
+    }
+//------------------------------------
+
+//-----------------------------------------------------
+    //listado de reportes
+    {
+        "pagina" : 0,
+        "anterior" : null,
+        "siguiente" : 1,
+        "reportes" : [{
+            "id_reporte" : 1,
+            "id_emisor" : 1,
+            "id_usuario" : 1,
+            "fecha" : "13:30 01-01-2026",
+            "descripcion" : "me ha mandado una fotopolla",
+            "pruebas" : {
+                "imagen" : { //puede ser null
+                    "id_imagen" : 1,
+                    "id_emisor" : 1,
+                    "url" : "www.sitiodelaimagen.com/ladirecciondondeporrasseencuentrelaimagenparapoderinsrtarla.jpg",
+                },
+                "mensaje" : { //puede ser null
+                    "id_mensaje" : 1,
+                    "id_chat" : 1,
+                    "id_emisor" : 1,
+                    "fecha_envio" : "13:30 01-01-2026",
+                    "contenido" : "veo un tipo en la esquina derecha haciendo twerking"
+                }
+            }
+        }]
+    },
+
+    //reporte
+    {
+        "id_reporte" : 1,
+        "id_emisor" : 1,
+        "id_usuario" : 1,
+        "fecha" : "13:30 01-01-2026",
+        "descripcion" : "me ha mandado una fotopolla",
+        "pruebas" : {
+            "imagen" : { //puede ser null
+                "id_imagen" : 1,
+                "id_emisor" : 1,
+                "url" : "www.sitiodelaimagen.com/ladirecciondondeporrasseencuentrelaimagenparapoderinsrtarla.jpg",
+            },
+            "mensaje" : { //puede ser null
+                "id_mensaje" : 1,
+                "id_chat" : 1,
+                "id_emisor" : 1,
+                "fecha_envio" : "13:30 01-01-2026",
+                "contenido" : "veo un tipo en la esquina derecha haciendo twerking"
+            }
+        }
+    },
+
+    //listado chats reporte & bugs (dado que al final será en ambos casos hablar entre psicólogos e informáticos/admins, no veo razón para hacer un apartado separado)
+    {
+        "pagina" : 0,
+        "anterior" : null,
+        "siguiente" : 1,
+        "chats" : [{
+            "id_chat" : 1,
+            "id_emisor" : 1,
+            "fecha_ultimo_mensaje" : "13:30 01-01-2026",
+            "ultimo_mensaje" : "la pantalla vibra cuando pongo el ratón encima del menú"
+        }]
+    }
+//-----------------------------------------------------
