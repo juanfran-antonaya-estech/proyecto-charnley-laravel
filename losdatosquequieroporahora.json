@@ -1,5 +1,6 @@
 //------------------------------
     //listado de imagenes - (nota: si fuese posible tener una opción para sacar solo las imágenes de un usuario concreto, molaría)
+    // Dud así no está en el esquema uml
     {
         "pagina" : 0,
         "anterior" : null,
@@ -13,6 +14,7 @@
     },
 
     //imagen
+    //! Me tienes que dar una ID
     {
         "id_imagen" : 1,
         "id_emisor" : 1,
@@ -67,10 +69,6 @@
     {
         "id_usuario" : 1,
         "url_foto" : "www.sitiodelaimagen.com/ladirecciondondeporrasseencuentrelaimagenparapoderinsrtarla.jpg",
-        "edad" : 41,
-        "sexo" : "otro",
-        "fecha_registro" : "13:30 01-01-2026", //cogería la fecha en que el admin lo registró
-        "strikes" : 3
     }
 //------------------------------------
 

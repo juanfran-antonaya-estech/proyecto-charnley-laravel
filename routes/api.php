@@ -32,6 +32,7 @@ Route::prefix('/V0_5')->group(function () {
                 Route::get('/chat', [UserController::class, 'getChatrooms']);
                 Route::get('/chat/{id}', [UserController::class, 'getMessagesByChatroom']);
                 Route::post('/chat/{id}', [UserController::class, 'sendMessage']);
+                Route::post('/report', [UserController::class, 'sendReports']);
             });
 
             Route::prefix('/familiar')->group(function() {
