@@ -70,9 +70,9 @@ class JoseHelper {
      * Esto vale para mostrar a los psicólogos a quién deben atender todavía.
      */
     public static function listadoDeSalasSinAtender(){
-        $salas = Sala::query()
-            ->whereDoesntHave('usersSoporte')
-            ->get();
+        $salas = Sala::all()->filter(function (Sala $sala) {
+            return $sala->usersSoporte->isEmpty();
+        });
         return $salas;
     }
 
