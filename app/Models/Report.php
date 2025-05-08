@@ -6,8 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Report extends Model
 {
-
-
     public function emisor()
     {
         return $this->belongsTo(User::class, 'id_emisor');

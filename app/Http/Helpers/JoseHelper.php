@@ -1,11 +1,15 @@
 <?php
 
+namespace App\Http\Helpers;
+
 use App\Models\Imagen;
 use App\Models\Report;
 use App\Models\Sala;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class JoseHelper {
+
     public static function listadoDeImagenes(){
         $imagenes = Imagen::all();
         return $imagenes;
@@ -34,6 +38,41 @@ class JoseHelper {
         return $salas;
     }
 
+    /**
+     * @author Jose Lopez Vilchez
+     * Para mostrar chats ya abiertos en los que participe alguien.
+     * 
+     * TODO: reemplazar el uso de $soporte por una comprobacion de rol, cuando los haya.
+     */
+    public static function listadoDeSalasAtendidas(bool $soporte = true){
+        /** @var User $user */
+        $user = Auth::user();
+
+        if ($soporte) {
+            $salas = $user->salasSoporte();
+        } else {
+            $salas = $user->chatrooms();
+        }
+
+        $salas = $salas->map(function (Sala $sala) {
+            $ultimoMensaje = $sala->mensajes->last();
+            return [
+                'sala' => $sala,
+                'ultimo_mensaje' => $ultimoMensaje ? $ultimoMensaje : null
+            ];
+        });
+
+        return $salas;
+    }
+
+    /**
+     * @author Jose Lopez Vilchez
+     * Esto vale para mostrar a los psicólogos a quién deben atender todavía.
+     */
+    public static function listadoDeSalasSinAtender(){
+        return Sala::doesntHave('usersSoporte')->get();
+    }
+
     public static function sala($id){
         $sala = Sala::where('id', $id)->first();
         return $sala;
@@ -53,6 +92,4 @@ class JoseHelper {
         $reporte = Report::where('id', $id)->first();
         return $reporte;
     }
-
-
 }
