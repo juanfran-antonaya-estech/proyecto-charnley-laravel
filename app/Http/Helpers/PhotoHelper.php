@@ -16,7 +16,7 @@ class PhotoHelper {
 
         if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
             // Windows command
-            $comando = $venvActivate . " & python " . $scriptPath . " " . escapeshellarg($imagePath) . " " . escapeshellarg($id) . " " . escapeshellarg('crear');
+            $comando = $venvActivate . " & python " . $scriptPath . " " . escapeshellarg($imagePath) . " " . $id . " crear";
         } else {
             // Unix-based command
             $venvActivate = str_replace('\\', '/', storage_path('app/private/image2recognition2dot0/venv/bin/activate'));
