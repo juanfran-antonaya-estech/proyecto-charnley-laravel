@@ -31,7 +31,7 @@ Route::prefix('/V0_5')->group(function () {
                 Route::get('/photo/{id}', [UserController::class, 'getPhotoDetail']);
                 Route::get('/chat', [UserController::class, 'getChatrooms']);
                 Route::get('/chat/{id}', [UserController::class, 'getMessagesByChatroom']);
-                Route::post('/chat/{id}', [UserController::class, 'sendMessage']);
+                Route::post('/chat', [UserController::class, 'postMessage']);
                 Route::post('/report', [UserController::class, 'sendReports']);
             });
 

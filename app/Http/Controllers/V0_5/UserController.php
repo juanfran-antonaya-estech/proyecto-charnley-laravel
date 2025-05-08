@@ -146,6 +146,35 @@ class UserController extends Controller
         return response()->json(['message' => 'No tienes permisos para este enlace'], 405);
     }
 
+    public function postMessage(Request $request){
+        $user = Auth::user();
+
+        if ($user && $user->role == 1 || $user->role == 6){
+
+
+            $request->validate([
+                'id_imagen' => 'required|integer',
+                'content' => 'required|string',
+            ]);
+
+            $sala = Sala::query()
+                ->where('id_img_asociada', $request->id_imagen)
+                ->where('id_paciente', $user->id)
+                ->firstOrCreate([
+                    'id_img_asociada' => $request->id_imagen,
+                    'id_paciente' => $user->id,
+                ]);
+
+            $message = Mensaje::create([
+                'id_sala' => $sala->id,
+                'id_sender' => $user->id,
+                'content' => $request->content,
+            ]);
+            return response()->json($message, 200);
+        }
+        return response()->json(['message' => 'No tienes permisos para este enlace'], 405);
+    }
+
     public function setMessageStatus(Request $request){
         $user = Auth::user();
 
