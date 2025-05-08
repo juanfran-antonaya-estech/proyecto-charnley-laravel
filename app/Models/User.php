@@ -66,11 +66,6 @@ class User extends Authenticatable
         ];
     }
 
-    public function role(){
-        //TODO: modelo para Role
-        return $this->belongsTo(Role::class);
-    }
-
     public function chatrooms(){
         return $this->hasMany(Sala::class, 'id_paciente', 'id');
     }
