@@ -80,20 +80,20 @@ class User extends Authenticatable
      * La idea es poder sacar las salas en las que alguien participe de soporte,
      * para no recibir todos los chats existentes al hacer la vista de soporte.
      * Me viene bien para el helper.
-     * 
+     *
      * En Sala se podía sacar qué usuarios están asociados a una sala,
      * pero intentar usar solo eso para sacar las salas asociadas a un
      * usuario hubiese ensuciado mucho.
      */
     public function salasSoporte()
     {
-        return $this->belongsToMany(Sala::class, 'sala_user', 'user_id', 'sala_id');
+        return $this->hasMany(Sala::class, 'sala_user', 'user_id', 'sala_id');
     } // ------------------------------------------------
 
     public function takingCareOf(){
         return $this->belongsTo(User::class, 'taking_care_of', 'id');
     }
     public function takenCareOf(){
-        return $this->hasMany(User::class, 'taking_care_of', 'id');
+        return $this->belongsToMany(User::class, 'taking_care_of', 'id');
     }
 }

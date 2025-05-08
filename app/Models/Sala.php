@@ -22,6 +22,6 @@ class Sala extends Model
     }
 
     public function usersSoporte(){
-        return $this->belongsToMany(User::class, 'sala_user', 'sala_id', 'user_id');
+        return $this->hasMany(User::class, 'sala_user', 'sala_id', 'user_id');
     }
 }

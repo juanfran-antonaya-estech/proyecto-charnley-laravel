@@ -41,7 +41,7 @@ class JoseHelper {
     /**
      * @author Jose Lopez Vilchez
      * Para mostrar chats ya abiertos en los que participe alguien.
-     * 
+     *
      * TODO: reemplazar el uso de $soporte por una comprobacion de rol, cuando los haya.
      */
     public static function listadoDeSalasAtendidas(bool $soporte = true){
@@ -70,7 +70,31 @@ class JoseHelper {
      * Esto vale para mostrar a los psicólogos a quién deben atender todavía.
      */
     public static function listadoDeSalasSinAtender(){
-        return Sala::doesntHave('usersSoporte')->get();
+        $salas = Sala::query()
+            ->whereDoesntHave('usersSoporte')
+            ->get();
+        return $salas;
+    }
+
+    /**
+     * @author Juan Francisco
+     * Para mostrar las salas que tiene asignado un usuario de soporte
+     *
+     * @return array
+     */
+    public static function listadoDeSalasMias(){
+        $user = Auth::user();
+        $salas = $user->salasSoporte()->get();
+
+        $salas = $salas->map(function (Sala $sala) {
+            $ultimoMensaje = $sala->mensajes->last();
+            return [
+                'sala' => $sala,
+                'ultimo_mensaje' => $ultimoMensaje ? $ultimoMensaje : null
+            ];
+        });
+
+        return $salas;
     }
 
     public static function sala($id){
