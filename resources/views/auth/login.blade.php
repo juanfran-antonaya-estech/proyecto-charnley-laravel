@@ -16,32 +16,43 @@
             @csrf
 
             <div>
-                <x-label for="email" value="{{ __('Email') }}" />
-                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
+                <label class="floating-label">
+                    <input id="email" type="email" name="email" :value="old('email')" required class="input validator input-md" />
+                    <div class="validator-hint">Enter valid email address</div>
+                    <span>{{ __('Email') }}</span>
+                </label>
             </div>
 
             <div class="mt-4">
-                <x-label for="password" value="{{ __('Password') }}" />
-                <x-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="current-password" />
+                <label class="floating-label">
+                    <input id="password" type="password" name="password" required class="input validator input-md"/> <!-- placeholder para poder acceder con la contraseña password -->
+                    {{-- <input id="password" type="password" name="password" required class="input validator input-md" minlength="8" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"/> --}}
+                    <p class="validator-hint">
+                        Must be more than 8 characters, including
+                        <br/>At least one number
+                        <br/>At least one lowercase letter
+                        <br/>At least one uppercase letter
+                    </p>
+                    <span>{{ __('Password') }}</span>
+                </label>
             </div>
 
             <div class="block mt-4">
-                <label for="remember_me" class="flex items-center">
-                    <x-checkbox id="remember_me" name="remember" />
-                    <span class="ms-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
-                </label>
+                <fieldset class="fieldset">
+                    <label class="label">
+                        <input type="checkbox" id="remember_me" name="remember" checked="checked" class="checkbox" />
+                        {{ __('Remember me') }}
+                    </label>
+                </fieldset>
             </div>
 
             <div class="flex items-center justify-end mt-4">
                 @if (Route::has('password.request'))
-                    <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('password.request') }}">
+                    <a class="link" href="{{ route('password.request') }}">
                         {{ __('Forgot your password?') }}
                     </a>
                 @endif
-
-                <x-button class="ms-4">
-                    {{ __('Log in') }}
-                </x-button>
+                <button type="submit" class="btn btn-xs sm:btn-sm md:btn-md lg:btn-lg xl:btn-xl">{{ __('Log in') }}</button>
             </div>
         </form>
     </x-authentication-card>
