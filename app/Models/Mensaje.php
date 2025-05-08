@@ -9,9 +9,7 @@ class Mensaje extends Model
     protected $fillable = [
         'id_sala',
         'id_sender',
-        'mensaje',
-        'tipo_mensaje',
-        'estado_mensaje',
+        'content',
     ];
 
     public function sala() {

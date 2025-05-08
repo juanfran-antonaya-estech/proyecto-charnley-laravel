@@ -40,24 +40,26 @@ class BotController extends Controller
             'image' => 'required|image|mimes:png|max:2048',
             'id' => 'required|integer',
             'objeto' => 'required|string',
-            'seguridad' => 'required|float'
+            'seguridad' => 'required|numeric'
         ]);
         $user = Auth::user();
 
         if ($user && $user->role == 5 || $user->role == 6) {
             $imageName = time() . '.' . $request->image->extension();
-            $request->image->move(public_path('images'), $imageName);
+            if (!$request->image->move(public_path('images'), $imageName)) {
+                return response()->json(['message' => 'Error al mover la imagen'], 500);
+            }
 
             // La imagen se puede acceder desde la url completa
             $imagenMod = Subimagen::create([
-                'id_paciente' => Imagen::find($request->id)->id_paciente,
                 'url' => url('images/' . $imageName),
                 'id_imagen' => $request->id,
                 'objeto' => $request->objeto,
                 'seguridad' => $request->seguridad,
             ]);
+            $imagenMod->save();
 
-            return response()->json(['message' => 'La imagen se ha subido'], 200);
+            return response()->json($imagenMod, 200);
         }
     }
 

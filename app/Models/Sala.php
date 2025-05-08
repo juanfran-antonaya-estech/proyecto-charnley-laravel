@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Sala extends Model
 {
+    protected $fillable = ['id_img_asociada', 'id_paciente'];
+
     public function imagen(): BelongsTo
     {
         return $this->belongsTo(Imagen::class, 'id_img_asociada');

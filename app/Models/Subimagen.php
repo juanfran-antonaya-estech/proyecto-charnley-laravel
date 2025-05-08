@@ -11,6 +11,8 @@ class Subimagen extends Model
 
     protected $table = 'subimagenes';
 
+    protected $fillable = ['id_paciente', 'url', 'id_imagen', 'objeto', 'seguridad'];
+
     public function imagen(): BelongsTo
     {
         return $this->belongsTo(Imagen::class, 'id_imagen');
