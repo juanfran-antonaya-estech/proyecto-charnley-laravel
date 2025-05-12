@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\Web\SupportController;
 use Illuminate\Support\Facades\Route;
 
 // Rutas con autorizacion
@@ -10,10 +10,10 @@ Route::middleware([
     'verified',
 ])->group(function () {
     Route::redirect('/', '/chats')->name('/');
-    Route::get('/chats', [Controller::class, 'chats'])->name('chats');
-    Route::get('/usuarios', [Controller::class, 'usuarios'])->name('usuarios');
-    Route::get('/reportes', [Controller::class, 'reportes'])->name('reportes');
-    Route::get('/bugs', [Controller::class, 'bugs'])->name('bugs');
+    Route::get('/chats', [SupportController::class, 'chats'])->name('chats');
+    Route::get('/usuarios', [SupportController::class, 'usuarios'])->name('usuarios');
+    Route::get('/reportes', [SupportController::class, 'reportes'])->name('reportes');
+    Route::get('/bugs', [SupportController::class, 'bugs'])->name('bugs');
 });
 
 // Swagger UI route

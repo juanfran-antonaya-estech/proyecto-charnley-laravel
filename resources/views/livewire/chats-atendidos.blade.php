@@ -3,14 +3,14 @@
   
         <li class="p-4 pb-2 text-xs opacity-60 tracking-wide">Chats activos</li>
     
-        @foreach ($chats as $chat)
+        @foreach ($salas as $sala)
             <li class="list-row">
                 <div><img class="size-10 rounded-box" src="https://img.daisyui.com/images/profile/demo/1@94.webp"/></div>
                 <div>
                     <div>
                         <div>
-                            <div>{{$chat['']}}</div>
-                            <div class="text-xs uppercase font-semibold opacity-60">{{$chat['']}}</div>
+                            <div>{{$sala['sala']->paciente()->name}}</div>
+                            <div class="text-xs uppercase font-semibold opacity-60">{{$sala['sala']->created_at}}</div>
                         </div>
                         <button class="btn btn-square btn-ghost">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
@@ -21,7 +21,7 @@
                         </button>
                     </div>
                     <div>
-                        <p class="list-col-wrap text-xs">"Remaining Reason" became an instant hit, praised for its haunting sound and emotional depth. A viral performance brought it widespread recognition, making it one of Dio Lupa’s most iconic tracks.</p>
+                        <p class="list-col-wrap text-xs">{{$sala['ultimo_mensaje']}}</p>
                     </div>
                 </div>
             </li>
