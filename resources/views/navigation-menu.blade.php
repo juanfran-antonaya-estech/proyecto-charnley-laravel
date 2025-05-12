@@ -10,17 +10,14 @@
 
             <!-- Navigation Links -->
             <div class="space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                <x-nav-link href="{{ route('imagenes') }}" :active="request()->routeIs('imagenes')">
-                    {{ __('imagenes') }}
-                </x-nav-link>
                 <x-nav-link href="{{ route('chats') }}" :active="request()->routeIs('chats')">
                     {{ __('chats') }}
                 </x-nav-link>
                 <x-nav-link href="{{ route('usuarios') }}" :active="request()->routeIs('usuarios')">
                     {{ __('usuarios') }}
                 </x-nav-link>
-                <x-nav-link href="{{ route('reportar') }}" :active="request()->routeIs('reportar')">
-                    {{ __('reportar') }}
+                <x-nav-link href="{{ route('reportes') }}" :active="request()->routeIs('reportes')">
+                    {{ __('reportes') }}
                 </x-nav-link>
                 <x-nav-link href="{{ route('bugs') }}" :active="request()->routeIs('bugs')">
                     {{ __('bugs') }}
