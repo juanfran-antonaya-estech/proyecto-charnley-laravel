@@ -8,8 +8,8 @@ use App\Models\Imagen;
 use App\Models\Mensaje;
 use App\Models\Report;
 use App\Models\Sala;
-use Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Spatie\LaravelImageOptimizer\Facades\ImageOptimizer;
 
@@ -51,7 +51,7 @@ class UserController extends Controller
             ImageOptimizer::optimize(public_path('images/' . $imageName));
             Log::info('Image optimized', ['image' => $imageName]);
 
-            if (PhotoHelper::pythonProccess($imagenOrig->url, $imagenOrig->id)) {
+            if (PhotoHelper::pythonProcess($imagenOrig->url, $imagenOrig->id)) {
                 Log::info('Image processed by Python', ['image' => $imagenOrig]);
                 return response()->json($imagenOrig, 200);
             }
