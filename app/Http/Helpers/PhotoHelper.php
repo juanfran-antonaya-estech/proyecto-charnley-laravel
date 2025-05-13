@@ -5,6 +5,7 @@ namespace App\Http\Helpers;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Process;
 use Storage;
+use Exception;
 
 class PhotoHelper {
     public static function pythonProcess($imagePath, $id) {
@@ -13,21 +14,32 @@ class PhotoHelper {
 
         $imageurl = url($imagePath);
 
-        $comando = "docker run --rm image2recognition \"$imageurl\" $id crear";
+        // Ensure the logs directory exists
+        $logDirectory = storage_path('logs');
+        if (!is_dir($logDirectory)) {
+            mkdir($logDirectory, 0755, true);
+        }
 
-        $proceso = Process::run($comando);
-
+        $logFile = storage_path('logs/docker_output.log');
+        $comando = "docker run --rm --add-host=host.docker.internal:host-gateway image2recognition \"$imageurl\" $id crear >> $logFile 2>&1 &";
 
         // Log the command for debugging
-        Log::info('Executing command: ' . $comando);
+        Log::info('Executing command asynchronously: ' . $comando);
 
-        // Log the output for debugging
-        Log::info('Command output: ' . $proceso->output());
+        try {
+            // Execute the command asynchronously
+            exec($comando, $output, $exitCode);
 
-        // Verify if the process completed successfully
-        if (trim($proceso->output()) === 'True') {
-            return true;
-        } else {
+            if ($exitCode === 0) {
+                Log::info('Command started successfully.');
+                return true;
+            } else {
+                Log::error('Failed to start command with exit code: ' . $exitCode);
+                return false;
+            }
+        } catch (Exception $e) {
+            // Log any exceptions that occur
+            Log::error('Error starting command: ' . $e->getMessage());
             return false;
         }
     }
