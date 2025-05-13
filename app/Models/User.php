@@ -82,7 +82,7 @@ class User extends Authenticatable
      */
     public function salasSoporte()
     {
-        return $this->hasMany(Sala::class, 'sala_user', 'user_id', 'sala_id');
+        return $this->belongsToMany(Sala::class, 'sala_user', 'user_id', 'sala_id');
     } // ------------------------------------------------
 
     public function takingCareOf(){

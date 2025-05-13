@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Web\SupportController;
 use Illuminate\Support\Facades\Route;
 
 // Rutas con autorizacion
@@ -8,22 +9,11 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified',
 ])->group(function () {
-    Route::redirect('/', '/imagenes')->name('/');
-    Route::get('/imagenes', function () {
-        return view('imagenes');
-    })->name('imagenes');
-    Route::get('/chats', function () {
-        return view('chats');
-    })->name('chats');
-    Route::get('/usuarios', function () {
-        return view('usuarios');
-    })->name('usuarios');
-    Route::get('/reportar', function () {
-        return view('reportar');
-    })->name('reportar');
-    Route::get('/bugs', function () {
-        return view('bugs');
-    })->name('bugs');
+    Route::redirect('/', '/chats')->name('/');
+    Route::get('/chats', [SupportController::class, 'chats'])->name('chats');
+    Route::get('/usuarios', [SupportController::class, 'usuarios'])->name('usuarios');
+    Route::get('/reportes', [SupportController::class, 'reportes'])->name('reportes');
+    Route::get('/bugs', [SupportController::class, 'bugs'])->name('bugs');
 });
 
 // Swagger UI route
