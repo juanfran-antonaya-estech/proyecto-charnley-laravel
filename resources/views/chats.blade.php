@@ -1,6 +1,6 @@
 <x-app-layout>
-    <div class="py-12 flex flex-col">
-        <div class="flex flex-row">
+    <div class="flex flex-col justify-center items-center">
+        <div class="flex flex-row w-full sm:max-w-sm md:max-w-md lg:max-w-2xl xl:max-w-5xl 2xl:max-w-7xl">
             @livewire('chats-atendidos')
 
             @livewire('chat', ['id_sala' => 1])
