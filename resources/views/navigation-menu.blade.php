@@ -1,5 +1,5 @@
 <nav x-data="{ open: false }" class="navbar">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between h-16">
+    <div class="w-full sm:max-w-sm md:max-w-md lg:max-w-2xl xl:max-w-5xl 2xl:max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between h-16">
         <div class="flex">
             <!-- Logo -->
             <div class="flex-1 shrink-0 flex items-center">
@@ -19,7 +19,7 @@
             </div>
         </div>
 
-        <div class="hidden sm:flex sm:items-center ms-3 sm:ms-6 relative">
+        <div class="flex items-center ms-3 sm:ms-6 relative">
 
             <div class="dropdown dropdown-end">
                 <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">

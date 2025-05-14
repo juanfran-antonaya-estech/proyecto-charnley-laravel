@@ -19,7 +19,7 @@ class SupportController extends Controller
                 'links' => ['chats']
             ]);
         } else {
-            // TODO: Insertar redirección a página de error muy terrorifica
+            return view('denegado');
         }
     }
 
@@ -30,7 +30,7 @@ class SupportController extends Controller
                 'links' => ['chats', 'usuarios', 'reportes', 'bugs']
             ]);
         } else {
-            // TODO: Insertar redirección a página de error muy terrorifica
+            return view('denegado');
         }
     }
 
@@ -41,7 +41,7 @@ class SupportController extends Controller
                 'links' => ['chats', 'usuarios', 'reportes', 'bugs']
             ]);
         } else {
-            // TODO: Insertar redirección a página de error muy terrorifica
+            return view('denegado');
         }
     }
 
@@ -52,7 +52,7 @@ class SupportController extends Controller
                 'links' => ['chats', 'usuarios', 'reportes', 'bugs']
             ]);
         } else {
-            // TODO: Insertar redirección a página de error muy terrorifica
+            return view('denegado');
         }
     }
 }
