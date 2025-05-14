@@ -72,6 +72,8 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 docker build -t image2recognition .
 ```
 
+- Realizar la instalación de laravel con el migrate --seed (En consola saldrán las credenciales de cada rol de usuario, solo pueden acceder a web support, admin, super admin, y father (la cuenta dev con permisos ilimitados))
+
 ## Credenciales Importantes
 
 ### Usuario Padre
