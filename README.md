@@ -65,6 +65,13 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
 
+## Antes de funcionar
+
+- Clonar este repositorio de [GitHub](https://github.com/juanfran-antonaya-estech/image2recognition2dot0.git) (Da igual la ubicación) y ejecutar en la raíz
+```bash
+docker build -t image2recognition .
+```
+
 ## Credenciales Importantes
 
 ### Usuario Padre
