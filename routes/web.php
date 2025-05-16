@@ -13,7 +13,12 @@ Route::middleware([
 ])->group(function () {
     Route::get('/logout', [AuthController::class, 'unlog'])->withoutMiddleware(NonUser::class)->name('logout');
     Route::get('/chats', )->name('chats');
-    Route::redirect('/', '/chats')->name('/');
+    Route::name('support.')->prefix('support')->group(function(){
+        Route::get('/chats', function(){
+            echo 'trippi troppi troppa trippa';
+        })->name('chats');
+    });
+    Route::redirect('/', '/support/chats')->name('/');
 });
 
 Route::get('/unwantedrole', [AuthController::class, 'unwantedrole'])->name('unwantedrole');
