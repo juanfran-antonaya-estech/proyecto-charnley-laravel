@@ -13,6 +13,10 @@
                 {{ $value }}
             </div>
         @endsession
+        @if (env('APP_ENV') == 'local')
+            <livewire:hinty />
+
+        @endif
         <div class="my-4 flex flex-row items-center justify-center">
         <form method="POST" action="{{ route('login') }}">
             @csrf
