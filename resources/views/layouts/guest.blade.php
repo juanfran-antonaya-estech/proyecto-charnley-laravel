@@ -18,7 +18,8 @@
         @livewireStyles
     </head>
     <body>
-        <div class="font-sans text-gray-900 antialiased">
+        <div class="container bg-base-100 grid-cols-4 mx-auto">
+            <h1 class="mb-4 text-4xl font-extrabold leading-none tracking-tight">Bienvenido a {{ env("APP_NAME", "Hay que ponerle nombre crack") }}</h1>
             {{ $slot }}
         </div>
 

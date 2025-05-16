@@ -8,7 +8,7 @@ use App\Models\Sala;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
-class JoseHelper {
+class JfalHelper {
 
     public static function listadoDeImagenes(){
         $imagenes = Imagen::all();
@@ -38,10 +38,6 @@ class JoseHelper {
         return $salas;
     }
 
-    /**
-     * @author Jose Lopez Vilchez
-     * Esto vale para mostrar a los psicólogos a quién deben atender todavía.
-     */
     public static function listadoDeSalasSinAtender(){
         $salas = Sala::all()->filter(function (Sala $sala) {
             return $sala->usersSoporte->isEmpty();
@@ -69,25 +65,5 @@ class JoseHelper {
         });
 
         return $salas;
-    }
-
-    public static function sala($id){
-        $sala = Sala::where('id', $id)->first();
-        return $sala;
-    }
-
-    public static function usuarios(){
-        $usuarios = User::all();
-        return $usuarios;
-    }
-
-    public static function listadoReportes(){
-        $reportes = Report::all();
-        return $reportes;
-    }
-
-    public static function reporte($id){
-        $reporte = Report::where('id', $id)->first();
-        return $reporte;
     }
 }
