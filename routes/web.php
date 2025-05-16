@@ -11,21 +11,9 @@ Route::middleware([
     'verified',
     NonUser::class,
 ])->group(function () {
-    Route::get('/logout', [AuthController::class, 'unlog'])->name('logout');
-    Route::get('/chats', function() {
-        echo("conchetumadre");
-    })->name('chats');
-    Route::get('/usuarios', [SupportController::class, 'usuarios'])->name('usuarios');
-    Route::get('/reportes', [SupportController::class, 'reportes'])->name('reportes');
-    Route::get('/bugs', [SupportController::class, 'bugs'])->name('bugs');
+    Route::get('/logout', [AuthController::class, 'unlog'])->withoutMiddleware(NonUser::class)->name('logout');
+    Route::get('/chats', )->name('chats');
     Route::redirect('/', '/chats')->name('/');
 });
 
 Route::get('/unwantedrole', [AuthController::class, 'unwantedrole'])->name('unwantedrole');
-
-// Swagger UI route
-Route::middleware(['auth:sanctum'])->group(function () {
-    Route::get('/swagger-ui', function () {
-        echo("Swagger UI");
-    });
-});
