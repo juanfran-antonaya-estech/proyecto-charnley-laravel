@@ -19,7 +19,7 @@ class BotController extends Controller
         $user = Auth::user();
 
         if ($user && $user->role == 5 || $user->role == 6) {
-            $imageName = time() . '.' . $request->image->extension();
+            $imageName = time() . '_mod' . '.' . $request->image->extension();
             $request->image->move(public_path('images'), $imageName);
 
             // La imagen se puede acceder desde la url completa
@@ -45,7 +45,7 @@ class BotController extends Controller
         $user = Auth::user();
 
         if ($user && $user->role == 5 || $user->role == 6) {
-            $imageName = time() . '.' . $request->image->extension();
+            $imageName = time() . '_sub_' . $request->id . '.' . $request->image->extension();
             if (!$request->image->move(public_path('images'), $imageName)) {
                 return response()->json(['message' => 'Error al mover la imagen'], 500);
             }
