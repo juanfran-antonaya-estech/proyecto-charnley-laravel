@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\V0_5;
 
 use App\Http\Controllers\Controller;
-use Auth;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 class AuthController extends Controller
