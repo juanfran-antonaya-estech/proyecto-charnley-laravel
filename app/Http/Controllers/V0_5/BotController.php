@@ -23,9 +23,10 @@ class BotController extends Controller
             $request->image->move(public_path('images'), $imageName);
 
             // La imagen se puede acceder desde la url completa
+            $relativeUrl = 'images/' . $imageName;
             $imagenMod = Imagen::create([
                 'id_paciente' => Imagen::find($request->id)->id_paciente,
-                'url' => url('images/' . $imageName),
+                'url' => $relativeUrl,
                 'id_imagen_original' => $request->id,
             ]);
 
@@ -51,8 +52,9 @@ class BotController extends Controller
             }
 
             // La imagen se puede acceder desde la url completa
+            $relativeUrl = 'images/' . $imageName;
             $imagenMod = Subimagen::create([
-                'url' => url('images/' . $imageName),
+                'url' => $relativeUrl,
                 'id_imagen' => $request->id,
                 'objeto' => $request->objeto,
                 'seguridad' => $request->seguridad,
@@ -75,12 +77,16 @@ class BotController extends Controller
             $imageName = time() . '.' . $request->image->extension();
             $request->image->move(public_path('images'), $imageName);
 
-            // La imagen se puede acceder desde la url completa
-            $imagenMod = Imagen::find($request->id);
-            $imagenMod->url = url('images/' . $imageName);
-            $imagenMod->save();
+            // Crear una nueva imagen modificada enlazada a la original
+            $relativeUrl = 'images/' . $imageName;
+            $imagenOriginal = Imagen::find($request->id);
+            $imagenMod = Imagen::create([
+                'id_paciente' => $imagenOriginal->id_paciente,
+                'url' => $relativeUrl,
+                'id_imagen_original' => $imagenOriginal->id,
+            ]);
 
-            return response()->json(['message' => 'La imagen se ha subido'], 200);
+            return response()->json(['message' => 'La imagen modificada se ha subido'], 200);
         }
 
         return response()->json(['message' => 'No tienes permisos para este enlace'], 405);

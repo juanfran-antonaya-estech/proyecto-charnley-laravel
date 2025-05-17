@@ -6,7 +6,7 @@
                 </figure>
                 <div
                 class="card-body cursor-pointer hover:bg-base-300 transition duration-300 ease-in-out"
-
+                wire:click="abrirChat({{ $chat->id }})"
                 >
                     <p>{{ $chat->ultimomensaje->content }}</p>
                 </div>

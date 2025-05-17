@@ -3,26 +3,39 @@
 namespace App\Livewire\Support;
 
 use App\Models\Sala;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Auth;
+use Livewire\Attributes\On;
 use Livewire\Component;
 
 class AssignedChats extends Component
 {
+
+    public $selectedSalaId = 0;
+
+    #[On('abrirChat')]
+    public function setSelectedSalaId($salaId){
+        $this->selectedSalaId = $salaId;
+    }
+
+    public function abrirChat($salaId)
+    {
+        $this->selectedSalaId = $salaId;
+        $this->dispatch('abrirChat', $salaId);
+    }
+
     public function render()
     {
 
         /** @var User $user */
         $user = Auth::user();
-        $salas = $user->salasSoporte()->get();
+        $salas = $user->salasSoporte;
 
-        $salas = $salas->map(function (Sala $sala) {
-            $ultimoMensaje = $sala->mensajes->last();
-            return [
-                'sala' => $sala,
-                'ultimo_mensaje' => $ultimoMensaje ? $ultimoMensaje : null
-            ];
-        });
-
-        return view('livewire.support.assigned-chats');
+        $selectedSalaId = $this->selectedSalaId;
+        return view('livewire.support.assigned-chats', [
+            'salas' => $salas,
+            'user' => $user,
+            'selectedSalaId' => $selectedSalaId,
+        ]);
     }
 }

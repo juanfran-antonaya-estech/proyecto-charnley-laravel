@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Imagen extends Model
 {
     protected $table = 'imagenes';
-    protected $fillable = ['id_paciente', 'url'];
+    protected $fillable = ['id_paciente', 'url', 'id_imagen_original'];
 
     public function paciente(): BelongsTo
     {
@@ -20,10 +20,16 @@ class Imagen extends Model
     }
 
     public function imagenMod(){
-        return $this->hasOne(Imagen::class);
+        return $this->hasOne(Imagen::class, 'id_imagen_original');
     }
 
     public function subimagenes(){
-        return $this->hasMany(Subimagen::class);
+        return $this->hasMany(Subimagen::class, 'id_imagen');
+    }
+
+    public function getUrlAttribute($value)
+    {
+        // Use asset() helper to generate the full URL from the relative path
+        return asset($value);
     }
 }

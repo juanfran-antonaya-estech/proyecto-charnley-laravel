@@ -6,22 +6,25 @@ use Livewire\Component;
 use App\Http\Helpers\JfalHelper;
 use App\Models\Sala;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Facades\Auth;
 
 class UnassignedChats extends Component
 {
 
-    /**
-     * @var Collection<int, Sala>
-     */
-    public $unassignedChats;
+    public function abrirChat($salaId){
+        $sala = Sala::find($salaId);
+
+        $sala->usersSoporte()->attach(Auth::user()->id);
+        $sala->save();
+
+        $this->dispatch('abrirChat', $salaId);
+    }
 
     public function mount()
     {
         $salas = Sala::all()->filter(function (Sala $sala) {
             return $sala->usersSoporte->isEmpty();
         });
-
-        $this->unassignedChats = $salas;
     }
 
     public function render()
@@ -30,9 +33,9 @@ class UnassignedChats extends Component
             return $sala->usersSoporte->isEmpty();
         });
 
-        $this->unassignedChats = $salas;
+        $unassignedChats = $salas;
         return view('livewire.support.unassigned-chats', [
-            'unassignedChats' => $this->unassignedChats,
+            'unassignedChats' => $unassignedChats,
         ]);
     }
 }
