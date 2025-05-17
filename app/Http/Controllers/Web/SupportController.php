@@ -8,5 +8,11 @@ use Illuminate\View\View;
 
 class SupportController extends Controller
 {
+    public function chats(){
+        $user = Auth::user();
 
+        return view('roles.support.chat', [
+            'user' => $user,
+        ]);
+    }
 }

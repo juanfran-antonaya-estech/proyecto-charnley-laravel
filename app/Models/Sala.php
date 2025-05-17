@@ -26,4 +26,8 @@ class Sala extends Model
     public function usersSoporte(){
         return $this->belongsToMany(User::class, 'sala_user', 'sala_id', 'user_id');
     }
+
+    public function ultimomensaje() {
+        return $this->hasOne(Mensaje::class, 'id_sala')->latest();
+    }
 }

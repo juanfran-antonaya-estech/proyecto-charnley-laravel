@@ -77,6 +77,13 @@
   --noise: 0;
 }
 
+/* clases personalizadas */
+@layer utilities {
+    .tilt {
+        @apply transition-style-preserve-3d perspective-[1000px] transition-transform duration-200 ease-out will-change-transform;
+    }
+}
+
 [x-cloak] {
     display: none;
 }

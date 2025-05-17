@@ -18,9 +18,7 @@ Route::middleware([
     Route::get('/decider', HospitalFloorLinesController::class)->name('decider');
 
     Route::name('support.')->prefix('/support')->group(function(){
-        Route::get('/chats', function(){
-            echo 'trippi troppi troppa trippa';
-        })->name('chats');
+        Route::get('/chats', [SupportController::class, 'chats'])->name('chats');
     });
     Route::name('admin.')->prefix('/admin')->group(function(){
         Route::get('/chats', function(){

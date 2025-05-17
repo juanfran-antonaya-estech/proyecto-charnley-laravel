@@ -17,12 +17,13 @@
         <!-- Styles -->
         @livewireStyles
     </head>
-    <body class="container bg-base-100">
+    <body class="w-screen h-screen">
             <!-- Page Content -->
             {{ $slot }}
 
         @stack('modals')
 
         @livewireScripts
+
     </body>
 </html>
