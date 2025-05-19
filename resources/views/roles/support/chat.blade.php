@@ -4,10 +4,10 @@
         <div class="row-span-5 bg-base-200 rounded overflow-y-scroll w-full">
             <livewire:support.assigned-chats />
         </div>
-        <div class="col-span-4 row-span-2 bg-base-200 rounded overflow-y-scroll w-full">
+        <div class="col-span-4 row-span-1 bg-base-200 rounded overflow-y-scroll w-full">
             <livewire:support.unassigned-chats />
         </div>
-        <div class="col-span-4 row-span-3 col-start-2 row-start-3 bg-base-200 rounded w-full">
+        <div class="col-span-4 row-span-4 col-start-2 row-start-2 bg-base-200 rounded w-full">
             <livewire:support.chat-panel />
         </div>
     </div>

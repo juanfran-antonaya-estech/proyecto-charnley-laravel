@@ -1,6 +1,6 @@
 <div>
     @if($sala != null)
-        <div class="grid grid-cols-5 grid-rows-1 gap-4 h-full">
+        <div class="grid grid-cols-4 grid-rows-1 gap-4 h-full">
             <div class="col-span-3">
                 <!-- Parte de chat -->
 
