@@ -68,7 +68,9 @@ class UserController extends Controller
         $user = Auth::user();
 
         if ($user && $user->role == 1 || $user->role == 6) {
-            $images = Imagen::where('id_paciente', $user->id)->and('id_imagen_original', null)->get();
+            $images = Imagen::where('id_paciente', $user->id)
+                ->where('id_imagen_original', null)
+                ->get();
             return response()->json($images, 200);
         }
 
