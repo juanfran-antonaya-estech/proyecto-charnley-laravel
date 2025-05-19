@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\HospitalFloorLinesController;
+use App\Http\Controllers\Web\AdminController;
 use App\Http\Controllers\Web\AuthController;
 use App\Http\Controllers\Web\SupportController;
 use App\Http\Middleware\NonUser;
@@ -12,7 +13,7 @@ Route::middleware([
     'verified',
     NonUser::class,
 ])->group(function () {
-    Route::get('/logout', [AuthController::class, 'unlog'])->withoutMiddleware(NonUser::class)->name('logout');
+    Route::get('/logout', [AuthController::class, 'unlog'])->withoutMiddleware(NonUser::class)->name('web.logout');
 
     //Bushismo
     Route::get('/decider', HospitalFloorLinesController::class)->name('decider');
@@ -21,14 +22,17 @@ Route::middleware([
         Route::get('/chats', [SupportController::class, 'chats'])->name('chats');
     });
     Route::name('admin.')->prefix('/admin')->group(function(){
-        Route::get('/chats', function(){
-            echo 'trippi troppi troppa trippa';
-        })->name('chats');
+        Route::get('/chats', [AdminController::class, 'chats'])->name('chats');
+        Route::get('/chat/{sala}', [AdminController::class, 'chat'])->name('chat');
+        Route::get('/images', [AdminController::class, 'images'])->name('images');
+        Route::get('/image/{imagen}', [AdminController::class, 'image'])->name('image');
+        Route::get('/users', [AdminController::class, 'users'])->name('users');
+        Route::get('/user/{user}', [AdminController::class, 'user'])->name('user');
     });
     Route::name('sadmin.')->prefix('/sadmin')->group(function(){
-        Route::get('/chats', function(){
+        Route::get('/user', function(){
             echo 'trippi troppi troppa trippa';
-        })->name('chats');
+        })->name('user.create');
     });
     Route::redirect('/', '/decider')->name('/');
 });

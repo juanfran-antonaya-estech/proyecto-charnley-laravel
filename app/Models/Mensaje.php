@@ -10,6 +10,8 @@ class Mensaje extends Model
         'id_sala',
         'id_sender',
         'content',
+        'sentiment',
+        'sentiment_score',
     ];
 
     public function sala() {

@@ -19,7 +19,7 @@ class HospitalFloorLinesController extends Controller
         } elseif($user->role == 4){
             return redirect()->route('admin.chats');
         } elseif($user->role == 5){
-            return redirect()->route('sadmin.chats');
+            return redirect()->route('sadmin.user.create');
         } else {
             return redirect()->route('unwantedrole');
         }

@@ -1,4 +1,4 @@
-<ul class="menu bg-base-100 w-full mt-2" wire:poll.750ms.keep-alive>
+<ul class="menu bg-base-100 w-full mt-2 overflow-hidden" wire:poll.750ms.keep-alive>
     @foreach ($salas as $sala)
         <li>
             <a

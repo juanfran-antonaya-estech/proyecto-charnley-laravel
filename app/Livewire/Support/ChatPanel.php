@@ -11,9 +11,16 @@ use Livewire\Component;
 class ChatPanel extends Component
 {
     public $selectedSalaId = 0;
+
+    /**
+     * @var Sala
+     */
     public $selectedSala = null;
 
     public $messageContent = '';
+
+    public $confirmreport = false;
+    public $confirmtoparent = false;
 
     public function send(){
         $this->validate([
@@ -28,12 +35,34 @@ class ChatPanel extends Component
         $mensaje->save();
     }
 
+    public function report(){
+        if($this->confirmreport){
+            $this->confirmreport = false;
+            $this->selectedSala->reported = true;
+            $this->selectedSala->save();
+        } else {
+            $this->confirmreport = true;
+        }
+    }
+
+    public function tofamiliar(){
+        if($this->confirmtoparent){
+            $this->confirmtoparent = false;
+            $this->selectedSala->visible_by_familiar = true;
+            $this->selectedSala->save();
+        } else {
+            $this->confirmtoparent = true;
+        }
+    }
+
     #[On('abrirChat')]
     public function setSelectedSalaId($salaId)
     {
         $this->selectedSalaId = $salaId;
         $this->messageContent = '';
         $this->selectedSala = Sala::find($salaId);
+        $this->confirmreport = false;
+        $this->confirmtoparent = false;
     }
 
     public function render()
