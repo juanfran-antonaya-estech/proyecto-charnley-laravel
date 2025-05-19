@@ -18,7 +18,7 @@ class UserController extends Controller
     public function uploadImage(Request $request) {
         Log::info('Request received', ['request' => $request->all()]);
         $request->validate([
-            'image' => 'required|image|mimes:png|max:2048',
+            'image' => 'required|image|mimes:png|max:204800',
         ]);
         Log::info('Request validated', ['request' => $request->all()]);
 
@@ -80,7 +80,7 @@ class UserController extends Controller
     public function getPhotoDetail(Request $request, $id){
         $user = Auth::user();
 
-        if ($user && $user->role == 1) {
+        if ($user && ($user->role == 1 || $user->role == 6)) {
 
             /**
              * @var Imagen

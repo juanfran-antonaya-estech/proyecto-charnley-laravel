@@ -12,7 +12,7 @@ class BotController extends Controller
 {
     public function uploadNewModifiedImage(Request $request){
         $request->validate([
-            'image' => 'required|image|mimes:png|max:2048',
+            'image' => 'required|image|mimes:png|max:204800',
             'id' => 'required|integer',
         ]);
 
@@ -38,7 +38,7 @@ class BotController extends Controller
 
     public function uploadSubImage(Request $request) {
         $request->validate([
-            'image' => 'required|image|mimes:png|max:2048',
+            'image' => 'required|image|mimes:png|max:204800',
             'id' => 'required|integer',
             'objeto' => 'required|string',
             'seguridad' => 'required|numeric'
@@ -67,7 +67,7 @@ class BotController extends Controller
 
     public function uploadEditedModifiedImage(Request $request){
         $request->validate([
-            'image' => 'required|image|mimes:png|max:2048',
+            'image' => 'required|image|mimes:png|max:204800',
             'id' => 'required|integer',
         ]);
 

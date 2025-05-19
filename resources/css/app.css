@@ -82,6 +82,13 @@
     .tilt {
         @apply perspective-[1000px] transition-transform duration-200 ease-out will-change-transform;
     }
+    .no-scrollbar::-webkit-scrollbar {
+        display: none;
+    }
+    .no-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
 }
 
 [x-cloak] {
