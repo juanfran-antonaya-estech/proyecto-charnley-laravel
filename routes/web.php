@@ -30,6 +30,9 @@ Route::middleware([
         Route::get('/user/{user}', [AdminController::class, 'user'])->name('user');
     });
     Route::name('sadmin.')->prefix('/sadmin')->group(function(){
+        Route::get('/chats', [AdminController::class, 'chats'])->name('chats');
+        Route::get('/images', [AdminController::class, 'images'])->name('images');
+        Route::get('/users', [AdminController::class, 'users'])->name('users');
         Route::get('/user', function(){
             echo 'trippi troppi troppa trippa';
         })->name('user.create');

@@ -81,4 +81,9 @@ class User extends Authenticatable
     public function takenCareOf(){
         return $this->belongsToMany(User::class, 'taking_care_of', 'id');
     }
+
+    // Cantidad de salas en la que el usuario ha sido reportado
+    public function nOfTimesReported(){
+        return $this->hasMany(Sala::class, 'id_paciente', 'id')->where('reported', true);
+    }
 }

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use App\Models\Sala;
 
 class Imagen extends Model
 {
@@ -25,6 +26,11 @@ class Imagen extends Model
 
     public function subimagenes(){
         return $this->hasMany(Subimagen::class, 'id_imagen');
+    }
+
+    public function sala()
+    {
+        return $this->hasOne(Sala::class, 'id_img_asociada');
     }
 
     public function getUrlAttribute($value)

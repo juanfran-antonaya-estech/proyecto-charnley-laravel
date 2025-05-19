@@ -32,18 +32,35 @@ class AdminController extends Controller
     }
 
     public function images(Request $request){
-
+        $imagenes = Sala::where('reported', true)->get()->map(function ($sala) {
+            return $sala->imagen;
+        })->chunk(3);
+        return view('roles.admin.images', [
+            'imagesgroup' => $imagenes,
+        ]);
     }
 
     public function image(Request $request, Imagen $imagen){
+        $user = Auth::user();
+        return view('roles.admin.image', [
+            'user' => $user,
+            'imagen' => $imagen,
+        ]);
 
     }
 
     public function users(Request $request){
-
+        $users = Sala::where('reported', true)->get()->map(function ($sala) {
+            return $sala->paciente;
+        })->flatten(1)->unique('id')->values();
+        return view('roles.admin.users', [
+            'users' => $users,
+        ]);
     }
 
     public function user(Request $request, User $user){
-
+        return view('roles.admin.user', [
+            'user' => $user,
+        ]);
     }
 }

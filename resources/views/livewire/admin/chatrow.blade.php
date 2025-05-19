@@ -3,7 +3,7 @@
     class="bg-base-200"
 @endif
 >
-    <td>{{ $index }}</td>
+    <th>{{ $index }}</th>
     <td><a class="link" href="{{ route('admin.user', $sala->paciente) }}">{{ $sala->paciente->name }}</a></td>
     <td>{{ $sala->ultimomensaje->content }}</td>
     <td>{{ $sala->visible_by_familiar ? "Sí" : "No" }}</td>

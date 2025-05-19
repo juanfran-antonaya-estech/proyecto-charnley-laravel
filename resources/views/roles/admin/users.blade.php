@@ -11,16 +11,15 @@
                 <thead>
                     <tr>
                         <th>#</th>
-                        <th>Paciente</th>
-                        <th>Último mensaje</th>
-                        <th>Enviado a familiar</th>
-                        <th>Imagen</th>
+                        <th>Nombre</th>
+                        <th>Correo</th>
+                        <th>Veces reportado</th>
                         <th>Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($salas as $index => $sala )
-                    <livewire:admin.chatrow salaId="{{ $sala->id }}" index="{{ $index }}" />
+                    @foreach ($users as $index => $user )
+                    <livewire:admin.userrow userId="{{ $user->id }}" index="{{ $index }}" />
                     @endforeach
                 </tbody>
             </table>
