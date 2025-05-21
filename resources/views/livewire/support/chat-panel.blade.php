@@ -1,4 +1,4 @@
-<div class="h-full w-full border-2 rounded-lg p-2 flex flex-col">
+<div class="h-full w-full border-2 rounded-lg p-2 flex flex-col" wire:poll.1s>
     @if($sala != null)
     <div class="grid grid-cols-4 gap-4 h-full min-h-0 rounded-lg">
         <div class="col-span-2 flex flex-col h-full min-h-0">

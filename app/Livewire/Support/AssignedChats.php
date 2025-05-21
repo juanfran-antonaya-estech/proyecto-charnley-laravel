@@ -29,7 +29,9 @@ class AssignedChats extends Component
 
         /** @var User $user */
         $user = Auth::user();
-        $salas = $user->salasSoporte;
+        $salas = $user->salasSoporte->filter(function(Sala $sala) {
+            return !$sala->reported;
+        });
 
         $selectedSalaId = $this->selectedSalaId;
         return view('livewire.support.assigned-chats', [

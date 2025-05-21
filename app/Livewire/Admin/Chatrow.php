@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Admin;
 
+use App\Models\Imagen;
 use App\Models\Sala;
 use Livewire\Component;
 
@@ -11,9 +12,9 @@ class Chatrow extends Component
     public $salaId;
     public $index;
 
-    private $confirmUserDelete = false;
-    private $confirmImageDelete = false;
-    private $confirmFree = false;
+    public $confirmUserDelete = false;
+    public $confirmImageDelete = false;
+    public $confirmFree = false;
 
     public function deleteUser()
     {
@@ -26,7 +27,7 @@ class Chatrow extends Component
     {
         $sala = Sala::find($this->salaId);
         $sala->imagen->delete();
-        $this->js('window.location.reload()');
+
     }
 
     public function free()

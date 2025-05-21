@@ -13,22 +13,22 @@ return new class extends Migration
     {
         Schema::create('salas', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('id_img_asociada')->constrained('imagenes');
-            $table->foreignId('id_paciente')->constrained('users');
+            $table->foreignId('id_img_asociada')->constrained('imagenes')->onDelete('cascade');
+            $table->foreignId('id_paciente')->constrained('users')->onDelete('cascade');
             $table->timestamps();
         });
 
         Schema::create('sala_user', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('sala_id')->constrained('salas');
-            $table->foreignId('user_id')->constrained('users');
+            $table->foreignId('sala_id')->constrained('salas')->onDelete('cascade');
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->timestamps();
         });
 
         Schema::create('mensajes', function (Blueprint $table) {
            $table->id();
-           $table->foreignId('id_sala')->constrained('salas');
-           $table->foreignId('id_sender')->constrained('users');
+           $table->foreignId('id_sala')->constrained('salas')->onDelete('cascade');
+           $table->foreignId('id_sender')->constrained('users')->onDelete('cascade');
            $table->string('content');
            $table->tinyInteger('state')->default(0); // 0 = no ha llegado, 1 = Entregado, 2 = leído
            $table->timestamps();

@@ -40,6 +40,7 @@ class ChatPanel extends Component
             $this->confirmreport = false;
             $this->selectedSala->reported = true;
             $this->selectedSala->save();
+            $this->selectedSala = null;
         } else {
             $this->confirmreport = true;
         }

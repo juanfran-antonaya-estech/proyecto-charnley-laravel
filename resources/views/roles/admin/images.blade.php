@@ -8,7 +8,7 @@
         </div>
         <div class="flex-1 overflow-y-scroll p-4">
             @foreach ($imagesgroup as $images )
-            <div class="columns-{{ $images->count() }}">
+            <div class="grid grid-cols-3 md:grid-cols-6 gap-4">
                 @foreach($images as $image)
                     <div class="card bg-base-200 shadow-xl tilt mb-4">
                         @if($image->sala != null)
