@@ -21,8 +21,7 @@
                             <h2 class="card-title">{{ $image->paciente->name }}</h2>
                             <p>{{ $image->description }}</p>
                             <div class="card-actions justify-end">
-                                <button class="btn btn-primary">Ver</button>
-                                <button class="btn btn-secondary">Eliminar</button>
+                                <a href="{{ route('admin.image', $image) }}" class="btn btn-primary">Ver</a>
                             </div>
                         </div>
                     </div>

@@ -58,9 +58,13 @@ class AdminController extends Controller
         ]);
     }
 
-    public function user(Request $request, User $user){
+    public function user(Request $request, $userId){
+        //dd($userId);
+        $paciente = User::find($userId);
+        //dd($paciente);
+
         return view('roles.admin.user', [
-            'user' => $user,
+            'paciente' => $userId,
         ]);
     }
 }
