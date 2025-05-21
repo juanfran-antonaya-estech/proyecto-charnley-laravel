@@ -4,9 +4,8 @@ cd $dirname
 git clone https://github.com/juanfran-antonaya-estech/image2recognition2dot0.git
 cd image2recognition2dot0
 git cp .env.example .env
-# Variables de entorno
-sed -i '' 's/^EMAIL=.*/EMAIL=botino@example.com/' .env
-sed -i '' 's/^PASSWORD=.*/PASSWORD=password/' .env
+# Abrir nano para editar el archivo .env y esperar a que el usuario lo cierre
+nano .env
 
 docker build -t image2recognition2dot0 .
 
@@ -16,6 +15,8 @@ rm -rf $dirname
 
 touch ./database/database.sqlite
 cp .env.example .env
+nano .env
+
 composer install
 composer update
 php artisan key:generate
