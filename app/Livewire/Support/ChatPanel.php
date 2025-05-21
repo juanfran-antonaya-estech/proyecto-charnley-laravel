@@ -66,6 +66,15 @@ class ChatPanel extends Component
         $this->confirmtoparent = false;
     }
 
+    public function mount(){
+        if($this->selectedSalaId != 0){
+            $this->messageContent = '';
+            $this->selectedSala = Sala::find($this->selectedSalaId);
+            $this->confirmreport = false;
+            $this->confirmtoparent = false;
+        }
+    }
+
     public function render()
     {
         $user = Auth::user();

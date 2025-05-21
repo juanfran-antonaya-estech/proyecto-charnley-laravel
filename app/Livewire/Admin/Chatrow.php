@@ -27,7 +27,7 @@ class Chatrow extends Component
     {
         $sala = Sala::find($this->salaId);
         $sala->imagen->delete();
-
+        $this->js('window.location.reload()');
     }
 
     public function free()

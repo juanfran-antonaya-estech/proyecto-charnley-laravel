@@ -1,5 +1,5 @@
 <x-app-layout>
-    <div class="flex flex-col h-screen">
+    <div class="flex flex-col h-screen overflow-y-auto">
         <div class="flex-shrink-0">
             <livewire:header />
         </div>

@@ -23,11 +23,11 @@ class AdminController extends Controller
         ]);
     }
 
-    public function chat(Request $request, Sala $sala){
+    public function chat(Request $request, $salaId){
         $user = Auth::user();
         return view('roles.admin.chat', [
             'user' => $user,
-            'sala' => $sala,
+            'sala' => $salaId,
         ]);
     }
 

@@ -1,4 +1,4 @@
-<div class="h-full w-full border-2 rounded-lg p-2 flex flex-col" wire:poll.1s>
+<div class="h-full w-full border-2 rounded-lg p-2 flex flex-col overflow-hidden" wire:poll.1000ms>
     @if($sala != null)
     <div class="grid grid-cols-4 gap-4 h-full min-h-0 rounded-lg">
         <div class="col-span-2 flex flex-col h-full min-h-0">
@@ -17,7 +17,11 @@
                     @else
                     <div class="chat chat-start">
                         <div class="chat-header">
-                            {{ $mensaje->sender->name }}
+                            @if ($user->role >= 4)
+                                <a href="{{ route('admin.user', $mensaje->sender->id) }}" class="link">{{ $mensaje->sender->name }}</a>
+                            @else
+                                {{ $mensaje->sender->name }}
+                            @endif
                             <time class="text-xs opacity-50">{{ $mensaje->created_at }}</time>
                         </div>
                         <div class="chat-bubble">{{ $mensaje->content }}</div>
@@ -61,6 +65,9 @@
         </div>
         <div class="col-span-2 flex flex-col h-full min-h-0">
             <!-- Parte de detalle -->
+            @if ($user->role >= 4)
+            <a href="{{ route('admin.image', $sala->imagen->id) }}" class="bg-error p-4 rounded hover:bg-neutral hover:scale-102 transition duration-150 ease-in-out">
+            @endif
             <figure class="diff aspect-16/9 shadow-lg" tabindex="0">
                 <div class="diff-item-1" role="img" tabindex="0">
                     <img class="rounded" alt="imagen original" src="{{ $sala->imagen->url }}" />
@@ -70,6 +77,9 @@
                 </div>
                 <div class="diff-resizer"></div>
             </figure>
+            @if($user->role >= 4)
+            </a>
+            @endif
             <div class="w-full flex-1 flex flex-col gap-2 overflow-y-auto no-scrollbar px-2">
                 @foreach($sala->imagen->subimagenes as $subim )
                 <div class="h-wrap flex flex-col items-center justify-center border-2 border-primary bg-base-200 rounded-lg p-1">
