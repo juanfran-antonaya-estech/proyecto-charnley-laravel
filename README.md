@@ -35,6 +35,11 @@ docker build -t image2recognition .
 ### Terminal 2
 `npm run dev`
 
+## Ejecución alternativa
+`sudo chmod +x firstsetup.sh`
+`./firstsetup.sh
+`
+
 
 # Credenciales Importantes
 
