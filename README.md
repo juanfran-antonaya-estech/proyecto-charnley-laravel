@@ -24,7 +24,7 @@ docker build -t image2recognition .
     1. `composer install`
     1. `composer update`
     1. `php artisan key:generate`
-    1. `php artisan migrate:fresh --seed``
+    1. `php artisan migrate:fresh --seed`
     1. `npm install`
     1. `npm update`
 
