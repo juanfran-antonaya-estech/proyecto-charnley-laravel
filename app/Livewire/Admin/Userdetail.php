@@ -18,6 +18,12 @@ class Userdetail extends Component
         $this->nh = new NumberHelper();
     }
 
+    public function eliminar(){
+        $paciente = User::find($this->pacienteId);
+        $paciente->delete();
+        $this->redirect(route('admin.users'));
+    }
+
     private $rolelist = [
         1 => 'Usuario',
         2 => 'Familiar',
@@ -28,7 +34,7 @@ class Userdetail extends Component
     ];
 
     public function mount(){
-        $this->nh = new NumberHelper();
+
     }
 
     public function render()

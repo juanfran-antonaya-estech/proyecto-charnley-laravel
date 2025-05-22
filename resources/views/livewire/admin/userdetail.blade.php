@@ -25,7 +25,7 @@
             </div>
             <h2 class="font-extrabold text-xl">Acciones</h2>
             <div class="join">
-                <button class="btn btn-error-join-item"></button>
+                <button class="btn btn-error join-item" wire:click="eliminar">Eliminar usuario</button>
             </div>
         </div>
     </div>
