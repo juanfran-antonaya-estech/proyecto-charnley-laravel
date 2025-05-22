@@ -9,7 +9,7 @@
         </div>
         <div class="bg-base-200 flex-1 p-4 rounded-lg">
             <h2 class="font-extrabold text-4xl">Información</h2>
-            <div class="stats shadow">
+            <div class="stats">
             <div class="stat">
                 <div class="stat-title text-primary">Correo electrónico</div>
                 <div class="stat-value text-primary">{{ $paciente?->email }}</div>
@@ -28,6 +28,16 @@
     <div class="tabs tabs-border m-4">
         <input type="radio" name="my_tabs_2" class="tab" aria-label="Imágenes" checked="checked" />
         <div class="tab-content border-base-300 bg-base-100 p-10">
+            @foreach ($paciente->imagenes as $image)
+            <figure class="bg-base-200 w-40 p-3 aspect-square shadow-lg rounded-lg">
+                @if($image->sala != null && $image->sala?->reported)
+                    <p class="badge badge-error absolute right-0 top-0">Reportada</p>
+                @endif
+                <a href="{{ route('admin.image', $image) }}" class="cursor-select">
+                        <img src="{{ $image->url }}" alt="" class="h-full object-cover">
+                    </a>
+                </figure>
+                @endforeach
 
         </div>
         <input type="radio" name="my_tabs_2" class="tab" aria-label="Chats" />

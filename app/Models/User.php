@@ -86,4 +86,8 @@ class User extends Authenticatable
     public function nOfTimesReported(){
         return $this->hasMany(Sala::class, 'id_paciente', 'id')->where('reported', true);
     }
+
+    public function imagenes(){
+        return $this->hasMany(Imagen::class, 'id_paciente')->where('id_imagen_original', null);
+    }
 }
