@@ -10,7 +10,7 @@
     </div>
     @if ($user->role == 5)
     <div class="flex-1 flex items-center justify-center">
-        <a href="{{ route('sadmin.user.create') }}" class="link">Reportes</a>
+        <a href="{{ route('sadmin.user.create') }}" class="link">Crear usuario</a>
     </div>
     @endif
 </div>

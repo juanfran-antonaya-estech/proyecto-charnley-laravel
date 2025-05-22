@@ -21,7 +21,11 @@ class SuperAdminController extends Controller
     }
 
     public function listimages(){
-        $imagenes = Imagen::all()->chunk(3);
+        $imagenes = Imagen::all()
+            ->filter(function (Imagen $imagen) {
+                return $imagen->id_imagen_original == null;
+            })
+            ->chunk(3);
         return view('roles.admin.images', [
             'imagesgroup' => $imagenes
         ]);
