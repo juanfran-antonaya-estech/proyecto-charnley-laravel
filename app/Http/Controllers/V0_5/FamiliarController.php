@@ -60,6 +60,7 @@ class FamiliarController extends Controller
 
             $imagenes = Imagen::query()
                 ->where('id_paciente', $user->takingCareOf->id)
+                ->where('id_imagen_original', null)
                 ->get();
 
             return response()->json($imagenes, 200);
