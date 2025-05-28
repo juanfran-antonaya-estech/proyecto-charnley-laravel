@@ -35,16 +35,15 @@ class FamiliarController extends Controller
 
         if($user->takingCareOf != null && ($user->role == 2 || $user->role == 6)){
 
-            $sala = Sala::query()
-                ->where('id', $id)
-                ->first();
+            $sala = Sala::find($id);
 
             if($sala){
-                return response()->json($sala, 200);
+                $messages = $sala->mensajes;
+                return response()->json($messages, 200);
             }
             else{
                 return response()->json([
-                    'message' => 'No existe la sala'
+                    'message' => 'Sala no encontrada'
                 ], 404);
             }
         }
