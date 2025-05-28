@@ -9,12 +9,11 @@ use Exception;
 
 class PhotoHelper {
     public static function pythonProcess($imagePath, $id) {
-        // Increase the maximum execution time for this function
-        set_time_limit(300); // Set to 5 minutes
+        set_time_limit(300); // 5 mins para timeout
 
         $imageurl = url($imagePath);
 
-        // Ensure the logs directory exists
+        // Asegurarse que los logs se guarden en el directorio correcto
         $logDirectory = storage_path('logs');
         if (!is_dir($logDirectory)) {
             mkdir($logDirectory, 0755, true);
