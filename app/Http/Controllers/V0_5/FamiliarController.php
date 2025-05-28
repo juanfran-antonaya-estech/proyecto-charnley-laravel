@@ -76,13 +76,17 @@ class FamiliarController extends Controller
 
         if($user->takingCareOf != null && ($user->role == 2 || $user->role == 6)){
 
-            $imagen = Imagen::query()
-                ->where('id', $id)
-                ->with(['imagenMod', 'subimagenes'])
-                ->first();
+            $imagen = Imagen::find($id);
 
             if($imagen){
-                return response()->json($imagen, 200);
+                $modifiedImage = Imagen::where('id_imagen_original', $id)->first();
+                $subImages = $imagen->subimagenes;
+
+                return response()->json([
+                    'image' => $imagen,
+                    'modified_image' => $modifiedImage,
+                    'sub_images' => $subImages
+                ], 200);
             }
             else{
                 return response()->json([
