@@ -1,10 +1,10 @@
-<div class="h-12 bg-base-300 flex justify-between items-center px-4 relative">
+<div class="h-15 bg-base-300 flex justify-between items-center px-4 relative">
     <div>
         <a class="btn btn-error btn-sm" href="{{ route('web.logout') }}">Cerrar sesión</a>
     </div>
     <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
         <h1 class="text-2xl font-extrabold tracking-tight">
-            {{ env('APP_NAME', "ponele nombre") }}
+            <img class="inline w-14" src="{{ asset("icono.png") }}" />{{ env('APP_NAME', "ponele nombre") }}
         </h1>
     </div>
     <div>
